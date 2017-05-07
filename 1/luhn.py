@@ -1,6 +1,7 @@
 """
-luhn algorithm used to validate the credit card number
-more : https://en.wikipedia.org/wiki/Luhn_algorithm
+-luhn algorithm used to validate the credit card number
+-more : https://en.wikipedia.org/wiki/Luhn_algorithm
+-this implementation use mutual recursion
 """
 
 def split(n):
