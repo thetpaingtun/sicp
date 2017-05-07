@@ -1,3 +1,8 @@
+"""
+luhn algorithm used to validate the credit card number
+more : https://en.wikipedia.org/wiki/Luhn_algorithm
+"""
+
 def split(n):
 	return n //10 , n % 10
 
@@ -27,5 +32,8 @@ def luhn_sum_double(n):
 		return luhn_sum(all_but_last) + luhn_digit
 
 
-def luhn_check():
-	pass
+def luhn_check(n):
+	return luhn_sum(n) % 10 == 0
+
+
+print(luhn_check(232))
