@@ -16,6 +16,8 @@ def reduce(reduce_fn,s,initial):
 		reduced = reduce_fn(x,reduced)
 	return reduced
 
+	
+
 
 s = [1,2,3,4,5]
 
