@@ -37,4 +37,4 @@ def luhn_check(n):
 	return luhn_sum(n) % 10 == 0
 
 
-print(luhn_check(232))
+print(luhn_check(428332100717524))
