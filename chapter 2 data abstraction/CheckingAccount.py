@@ -50,7 +50,7 @@ class Bank:
 #test
 b = Bank()
 thet_acc = b.open_account("thet",100,Account)
-paing_acc = b.open_account("paing",10,CheckingAccount)
+paing_acc = b.open_account("paing",10,CheckingAccountt)
 
 print(thet_acc.balance)
 print(paing_acc.balance)
