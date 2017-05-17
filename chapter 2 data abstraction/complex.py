@@ -1,33 +1,66 @@
 from math import sin,cos,pi,atan2
 from fractions import gcd
 
-def add_complex_and_rational(c,r):
-	return ComplexRI(c.real+r.num/r.denom,c.imag)
 
-def add_rational_and_complex(r,c):
-	return add_complex_and_rational(c,r)
+# --------------- Using type dispatching ----------------
+# def add_complex_and_rational(c,r):
+# 	return ComplexRI(c.real+r.num/r.denom,c.imag)
+
+# def add_rational_and_complex(r,c):
+# 	return add_complex_and_rational(c,r)
 	
 
-#Number 
+# #Number 
+# class Number:
+# 	def __add__(self,other):
+# 		if self.type_tag == other.type_tag: #if they are the same types
+# 			return self.add(other)
+# 		elif (self.type_tag,other.type_tag) in self.adders:
+# 			return self.cross_apply(other,self.adders)
+
+# 	def __mul__(self,other):
+# 		return self.mul(other)
+
+
+# 	def cross_apply(self,other,cross_fns):
+# 		cross_fn = cross_fns[(self.type_tag,other.type_tag)]
+# 		return cross_fn(self,other)
+		
+# 	#adders dictionary
+# 	adders = {('com','rat'):add_complex_and_rational,
+# 				('rat','com'):add_rational_and_complex}
+
+
+#---------------------------------------------------------------
+
+# --------------- Using type coercion --------------------------
+def rational_to_complex(r):
+	return ComplexRI(r.num/r.denom,0)
+
+
 class Number:
 	def __add__(self,other):
-		if self.type_tag == other.type_tag: #if they are the same types
-			return self.add(other)
-		elif (self.type_tag,other.type_tag) in self.adders:
-			return self.cross_apply(other,self.adders)
+		x,y = self.corece(other)
+		return x.add(y)
 
-	def __mul__(self,other):
-		return self.mul(other)
+	def corece(self,other):
+		if self.type_tag == other.type_tag:
+			return self , other
+		elif (self.type_tag,other.type_tag) in self.coercions: #rat to com
+			return (self.coerce_to(other.type_tag),other)
+		elif (other.type_tag,self.type_tag) in self.coercions: # com to rat
+			return (self,other.coerce_to(self.type_tag))
 
 
-	def cross_apply(self,other,cross_fns):
-		cross_fn = cross_fns[(self.type_tag,other.type_tag)]
-		return cross_fn(self,other)
-		
-	#adders dictionary
-	adders = {('com','rat'):add_complex_and_rational,
-				('rat','com'):add_rational_and_complex}
+	def coerce_to(self,other_tag):
+		coercion_fn = self.coercions[(self.type_tag,other_tag)]
+		return coercion_fn(self)
+	
+	coercions = {('rat','com'):rational_to_complex}
 
+
+
+#---------------------------------------------------------------
 
 
 
