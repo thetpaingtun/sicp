@@ -139,6 +139,21 @@
 
 
 
+(define (average_of_list lst)
+	(define (impl acc count lst)
+		(if (null? lst)
+			(/ acc count)
+			(impl (+ acc (car lst)) (+ count 1) (cdr lst))
+		)
+	)
+	(impl 0 0 lst)
+)
+
+
+
+
+
+
 
 
 
