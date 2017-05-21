@@ -54,11 +54,88 @@
 )
 
 
+(define (assert_equal a b)
+
+	(define (print_error)
+		(display a)
+		(display " is not equal to ")
+		(display b)
+		(newline)
+	)
+
+	(if (not (equal? a b))
+		(print_error)
+		(null)
+	)
+)
+
+
+(define (circle_detail r)
+  (define pi 3.14)
+  (define (area) (* pi r r))
+  (define (circum)  (* 2 pi r))
+  (list (area) (circum))
+
+)
+
+
+(define (make_adder x)
+	(define (adder y)
+		(+ x y)
+	)
+	adder
+) 
+
+
+(define (fib n)
+	(if (or (= n 0) (= n 1))
+		n
+		(+ (fib (- n 2)) (fib (- n 1)))
+	)
+)
+
+
+
+(define (fact n)
+	(if (= n 0)
+		1
+		(* n (fact (- n 1)))
+	)
+)
+
+
+(define (fact_iter n)
+	(define (impl acc count)
+		(if (= count 0)
+			acc
+			(impl (* acc count) (- count 1))
+		)
+	)
+	(impl 1 n)
+)
 
 
 
 
+(define (fib_iter n)
+	(define (impl acc1 acc2 count)
+		(if (= count 2)
+			acc1
+			(impl (+ acc1 acc2) acc1 (- count 1))
+		)
+	)
+	(impl 1 1 n)
 
+)
+
+
+
+(define (safe_sum x y)
+	(if (and (integer? x) (integer? y))
+		(+ x y)
+		"Incorrect types"
+	)
+)
 
 
 
