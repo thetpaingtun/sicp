@@ -51,7 +51,7 @@ def empty(s):
 def intersect_set(set1 , set2):
 	if empty(set1) or empty(set2):
 		return Link.empty
-	else :
+	else :py
 		e1 , e2 = set1.first , set2.first
 		if e1 == e2 :
 			return Link(e1,intersect_set(set1.rest,set2.rest))
