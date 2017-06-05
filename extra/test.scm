@@ -108,6 +108,49 @@
 )
 
 
+(define (roots a b c)
+   ;return the value of x from ax2 + bx + c using quadratic formula
+   (list
+      (/
+         (+ (- b) (sqrt (- (* b b) (* 4 a c))))  
+         (* 2 a)
+      )
+
+      (/
+         (- (- b) (sqrt (- (* b b) (* 4 a c))))  
+         (* 2 a)
+      ) 
+   )
+)
+
+(define (rt a b c) 
+   (let 
+      (
+         (discriminant (sqrt (- (* b b) (* 4 a c))))
+         (minus-b (- b))
+         (two-a (* 2 a))
+      )
+      (list (/ (+ minus-b discriminant) two-a)
+            (/ (- minus-b discriminant) two-a)      
+      )
+   )  
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
