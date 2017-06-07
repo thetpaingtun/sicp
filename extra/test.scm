@@ -51,8 +51,8 @@
 
 (define (member? x lst)
    (cond  
-   ((null? lst) False)
-   ((equal? x (car lst)) True)
+   ((null? lst) #f)
+   ((equal? x (car lst)) #t)
    (else (member? x (cdr lst)))
    
    ) 
@@ -146,6 +146,37 @@
       (* (+ a a) (+ b b))
    )     
 )
+
+
+
+
+(define (size-of-list lst)
+   (if (equal? lst '())
+      0
+      (+ 1 (size-of-list (cdr lst)))
+   )  
+)
+
+
+(define (item-of-list n lst)
+   (if (zero? n)
+      (car lst)
+      (item-of-list (- n 1) (cdr lst))
+   )  
+)
+
+
+(define (every fn lst)
+   (if (null? lst)
+      lst
+      (cons (fn (car lst)) (every fn (cdr lst)))
+   )  
+)
+
+(define (add-three x)
+   (+ x 3)  
+)
+
 
 
 
