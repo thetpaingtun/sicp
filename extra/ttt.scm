@@ -9,8 +9,10 @@
 )
 
 (define (substitute-triple comb pos)    
-   (every (lambda (square) (substitute-letter square pos)) (num->list comb))
+   (accumulate (every (lambda (square) (substitute-letter square pos)) (num->list comb)))
 )
+
+
 
 ;helper functions 
 (define (symbol->list symbol) 
@@ -49,11 +51,25 @@
 
 )
 
-
-
 (define (every fn lst)
    (if (null? lst)
       lst
       (cons (fn (car lst)) (every fn (cdr lst)))
    )  
 )
+
+
+(define (accumulate lst)
+  (define (_acc lst)
+      (if (null? lst)
+      lst
+      (if (number? (car lst))
+          (cons (car (string->list (number->string (car lst)))) (_acc (cdr lst)))
+          (cons (car (string->list (symbol->string (car lst)))) (_acc (cdr lst)))
+      )
+      )     
+  )
+  (list->string (_acc lst))
+
+)
+
