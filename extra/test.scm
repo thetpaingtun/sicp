@@ -178,6 +178,29 @@
 )
 
 
+;need some fix
+(define (explode num)
+   (if (< num 10)
+      num
+      (cons  (explode (truediv num 10)) (remainder num 10))
+   )  
+)
+
+(define (countdown n)
+   (if (= n 0)
+      '(BLASTOFF)
+      (cons n (countdown (- n 1)))
+   )  
+)
+
+(define (copies times symbol)
+   (if (zero? times)
+      '()
+      (cons symbol (copies (- times 1) symbol))
+   ) 
+)
+
+
 
 
 
