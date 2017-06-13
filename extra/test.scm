@@ -225,26 +225,22 @@
          (cons (spell-digit (car lst)) (_spell (cdr lst)))
       )  
    )
-   (_spell '(1 2 3))
+   (_spell (num->list num))
 )
 
 (define (spell-digit digit)
    (item-of-list digit '(zero one two three four five six seven eight nine ten))  
 )
 
-(define (num->list num)
-   (list (truediv num 100) (truediv (remainder num 100) 10) (remainder num 10))
-)
 
 (define (num->list num)
-  (define (_con num)
-    (if (< num 10)
-      (cons num '())
-      (cons (remainder num 10) (num->list (truediv num 10)))
-   )
-
+  (define (_con num acc)
+      (if (< num 10)
+         (cons num acc)
+         (_con (truediv num 10) (cons (remainder num 10) acc))
+      )  
   )
-   (reverse-list (_con num))
+  (_con num '())
 )
 
 
