@@ -200,13 +200,52 @@
    ) 
 )
 
+(define (fact n)
+   (if (or (= n 1) (= n 0))
+      n
+      (* n (fact (- n 1)))
+   )
+)
+
+(define (reverse-list lst)
+   (define (_reverse lst acc)
+      (if (null? lst)
+         acc
+         (_reverse (cdr lst) (cons (car lst) acc))
+      )  
+   )
+   (_reverse lst '())
+)
 
 
+(define (spell-number num)
+   (define (_spell lst)
+      (if (null? lst)
+         '()
+         (cons (spell-digit (car lst)) (_spell (cdr lst)))
+      )  
+   )
+   (_spell '(1 2 3))
+)
 
+(define (spell-digit digit)
+   (item-of-list digit '(zero one two three four five six seven eight nine ten))  
+)
 
+(define (num->list num)
+   (list (truediv num 100) (truediv (remainder num 100) 10) (remainder num 10))
+)
 
+(define (num->list num)
+  (define (_con num)
+    (if (< num 10)
+      (cons num '())
+      (cons (remainder num 10) (num->list (truediv num 10)))
+   )
 
-
+  )
+   (reverse-list (_con num))
+)
 
 
 
