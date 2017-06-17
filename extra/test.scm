@@ -315,6 +315,23 @@
 )
 
 
+(define (differences lst)
+   (cond 
+      ((null? lst) lst) 
+      ((= 1 (length lst)) '())
+      (else (cons (- (car (cdr lst)) (car lst)) (differences (cdr lst))))   
+      
+   )  
+)
+
+(define (expand lst)
+   (cond 
+      ((null? lst) lst)  
+      ((number? (car lst)) (cons (copies (car lst) (car (cdr lst)))) (expand (cdr lst)))
+      (else (cons (car lst) (expand (cdr lst))))
+   )  
+)
+
 
 
 
