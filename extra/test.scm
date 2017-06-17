@@ -232,16 +232,91 @@
    (item-of-list digit '(zero one two three four five six seven eight nine ten))  
 )
 
-
-(define (num->list num)
-  (define (_con num acc)
-      (if (< num 10)
-         (cons num acc)
-         (_con (truediv num 10) (cons (remainder num 10) acc))
-      )  
-  )
-  (_con num '())
+(define (remove-once symbol lst)
+   (if (null? lst)
+      '()
+      
+   )  
 )
+
+(define (keep-three-letter-words lst)
+   (cond 
+      ((null? lst) lst)
+      ((= 3 (string-length (car lst))) (cons (car lst) (keep-three-letter-words (cdr lst))))
+      (else (keep-three-letter-words (cdr lst)))
+   )
+)
+
+
+(define  (addup lst)
+   (if (null? lst)
+      0
+      (+ (car lst) (addup (cdr lst)))
+   )  
+)
+
+(define (maxlist lst)
+   (if (= 1 (length lst))
+      (car lst)
+      (max (car lst) (maxlist (cdr lst)))
+   )  
+)
+
+(define (square-list lst)
+   (if (null? lst)
+      lst
+      (cons (* (car lst) (car lst)) (square-list (cdr lst)))
+   )  
+)
+
+
+(define (add-numbers lst)
+   (cond 
+      ((null? lst) 0)
+      ((number? (car lst)) (+ (car lst) (add-numbers (cdr lst))))
+      (else (add-numbers (cdr lst)))
+   )  
+)
+
+
+(define (every-n n lst)
+   (define (helper interval remaining lst)
+     (cond 
+      ((null? lst) lst)
+      ((= 1 remaining) (cons (car lst) (helper interval interval (cdr lst))))
+      (else (helper interval (- remaining 1) (cdr lst)))
+     )  
+   )  
+    
+   (helper n n lst)
+  
+)
+
+(define (first-number lst)
+   (cond 
+      ((null? lst) "no-number")
+      ((number? (car lst)) (car lst))
+      (else (first-number (cdr lst)))
+
+)
+)
+
+
+(define (oddth lst)
+   (define (od i r lst)
+      (cond 
+         ((null? lst) lst)  
+         ((= 1 r) (cons (car lst) (od i i (cdr lst))))
+         (else (od i (- r 1) (cdr lst)))
+      )  
+   )
+
+   (od 2 1 lst)
+)
+
+
+
+
 
 
 
