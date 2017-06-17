@@ -333,6 +333,14 @@
 )
 
 
+(define (flatten seq)
+   (cond 
+      ((null? seq) seq)
+      ((list? (car seq)) (append (flatten (car seq)) (flatten (cdr seq))))
+      (else (cons (car seq) (flatten (cdr seq))))
+   )  
+)
+
 
 
 
