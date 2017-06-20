@@ -342,6 +342,34 @@
 )
 
 
+(define (sorted? lst)
+   (cond 
+      ((null? lst) #t)
+      ((= 1 (length lst)) #t)
+      ((> (- (car (cdr lst)) (car lst)) -1) (sorted? (cdr lst)))
+      (else #f)
+   )  
+  
+)
+
+
+(define (location sym lst)
+   (define (helper count sym lst)
+        (cond
+            ((null? lst) #f)
+            ((equal? sym (car lst)) count)
+            (else (helper (+ 1 count) sym (cdr lst)))
+        )  
+   )
+   (helper 0 sym lst)
+)
+
+
+
+
+
+
+
 
 
 
