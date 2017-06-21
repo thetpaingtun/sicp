@@ -365,10 +365,42 @@
 )
 
 
+(define (count-adjacent-duplicates lst)
+   (define (helper lst acc)
+     (cond
+         ((= 1 (length lst)) acc)
+         ((equal? (car lst) (cadr lst)) (helper (cdr lst) (+ 1 acc)))
+         (else (helper (cdr lst) acc))
+     )  
+   )  
+   (helper lst 0)
+)
 
+(define (remove-adjacent-duplicates lst)
+   (cond 
+      ((= 1 (length lst))  lst)
+      ((equal? (car lst) (cadr lst)) (remove-adjacent-duplicates  (cdr lst)))
+      (else (cons (car lst) (remove-adjacent-duplicates (cdr lst))))
+   )  
+)
 
+(define (progressive-square? lst)
+   (cond 
+      ((= 1 (length lst)) #t)
+      ((not (= (* (car lst) (car lst)) (cadr lst))) #f)
+      (else (progressive-square? (cdr lst)))
+   )  
+)
 
-
+(define (merge lst1 lst2)
+   (cond 
+      ((null? lst1) lst2)
+      ((null? lst2) lst1)
+      ((< (car lst1) (car lst2)) (cons (car lst1) (merge (cdr lst1) lst2)))
+      ((> (car lst1) (car lst2)) (cons (car lst2) (merge lst1 (cdr lst2))))
+   ) 
+  
+)
 
 
 
